@@ -1,5 +1,9 @@
 from Traders import traderBot
 
+"""
+This trader treats the stock as long time investment,
+buying only on the first 3 days and selling all on the last day.
+"""
 class SolidTrader(traderBot.TraderBot):
     _name = "netzer_solid"
     

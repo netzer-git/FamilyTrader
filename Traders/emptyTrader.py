@@ -1,5 +1,8 @@
 from Traders import traderBot
 
+""" 
+This trader does not buy or sell. It is doing nothing and ends with the same money as it started.
+"""
 class EmptyTrader(traderBot.TraderBot):
     _name = "netzer_empty"
     

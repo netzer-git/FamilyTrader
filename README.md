@@ -1,14 +1,18 @@
 # FamilyTrader
+Welcome to the Stock Exchange Bot Family Game! Yay!
 
+In the game, we would each create a simple bot, with only 2 functions, that will play with the other bots at stock exchange trading.
 ## Day In The Exchange
 For X traders, in a game that plays for Y days. Where the stock value is P
-1. Randomize 2*X offers. Each trader get 2 offers, for each offer, activate the bot on buy_offer function.
+1. Randomize 2*X offers. Each trader get 2 offers, for each offer, activate the bot on buy_offer function for each offer.
 2. (not in Alpha) In randomize turns, each trader will have the chance of buying each offer that no one have taken yet.
 3. Each trader gets the option to sell any amount of stocks they have, as per the market value.
 4. Price updating: goes up for each buy and down for each sell. Also moves around randomly.
 
 ## Your Bot
-Each bot participating in the game should be a class inheriting from the TraderBot class, and so will have to include two functions:
+Each bot participating in the game should be a class inheriting from the TraderBot class, and so will have to include two functions.
+
+You can see a few examples for trader bots in Traders folders.
 
 #### buy_offer(money: int, value: int, price: int, time: [int, int]) -> bool
 

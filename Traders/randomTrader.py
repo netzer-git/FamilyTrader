@@ -1,6 +1,10 @@
 from Traders import traderBot
 import random as rnd
 
+""" 
+This trader buys and sells randomly,
+It flips coin every time to decide if to buy or sell.
+"""
 class RandomTrader(traderBot.TraderBot):
     _name = "netzer_random"
     
