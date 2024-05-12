@@ -1,5 +1,5 @@
 from traderHandler import TraderHandler
-
+import random as rnd
 
 def run_stock_exchange(trader_handler: TraderHandler, init_stock: int, commission: int, last_day: int):
     current_day = 1
@@ -13,14 +13,14 @@ def run_stock_exchange(trader_handler: TraderHandler, init_stock: int, commissio
         # sell phase
         day_sells = trader_handler.activate_sell_phase(current_stock_value, commission, [current_day, last_day])
         # adjust stock phase
-        current_stock_value = adjust_stock_value(current_stock_value, day_buys, day_sells)
+        current_stock_value = adjust_stock_value(current_stock_value, day_buys, day_sells, deviation)
         # day advance
         print(f"Day {current_day} ended")
         current_day += 1
-    
-    print("Stock exchange simulation ended")
-    trader_handler.pretty_print()
 
-def adjust_stock_value(value: int, day_buys: int, day_sells: int) -> int:
-    # TODO
-    return value + 1
+def adjust_stock_value(value: int, day_buys: int, day_sells: int, deviation: float) -> int:
+    # raise the value in % by the difference between buys and sells
+    value += int(value * (day_buys - day_sells) / value) * 10
+    # add a random deviation
+    chip = rnd.randint(-int(value * deviation), int(value * deviation))
+    return value + chip
