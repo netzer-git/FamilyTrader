@@ -1,6 +1,6 @@
-from traderBot import TraderBot
+from Traders import traderBot
 
-class EmptyTrader(TraderBot):
+class EmptyTrader(traderBot.TraderBot):
     _name = "empty"
     
     def buy_offer(self, money: int, value: int, price: int, time) -> bool:
