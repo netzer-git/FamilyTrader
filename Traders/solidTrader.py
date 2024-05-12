@@ -7,5 +7,4 @@ class SolidTrader(traderBot.TraderBot):
         return time[0] in [1, 2, 3]
     
     def sell_stocks(self, money: int, stocks: int, value: int, time) -> int:
-        if time[0] == time[1]:
-            return stocks
+        return stocks if time[0] == time[1] else 0
