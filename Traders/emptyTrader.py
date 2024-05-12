@@ -2,6 +2,8 @@ from Traders import traderBot
 
 """ 
 This trader does not buy or sell. It is doing nothing and ends with the same money as it started.
+Empty trader can be easily used as a template for new traders.
+Change the name and implement the buy_offer and sell_stocks methods fully.
 """
 class EmptyTrader(traderBot.TraderBot):
     _name = "netzer_empty"
