@@ -29,6 +29,8 @@ class TraderHandler:
                     refused_offers.append(offer_price)
                     print(f"{trader.get_name()} refused a stock at {offer_price}")
         
+        return today_buys
+        
 
     def activate_sell_phase(self, value: int, commission: int, time ) -> int:
         total_sales = 0
