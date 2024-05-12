@@ -2,11 +2,10 @@
 
 ## Day In The Exchange
 For X traders, in a game that plays for Y days. Where the stock value is P
-1. Randomize 2*X offers for the price of 
-2. Each trader get 2 offers, for each offer, activate the bot on buy_offer function.
-3. (not in Alpha) In randomize turns, each trader will have the chance of buying each offer that no one have taken yet.
-4. Each trader gets the option to sell any amount of stocks they have, as per the market value.
-5. Price updating: goes up for each buy and down for each sell. Also moves around randomly.
+1. Randomize 2*X offers. Each trader get 2 offers, for each offer, activate the bot on buy_offer function.
+2. (not in Alpha) In randomize turns, each trader will have the chance of buying each offer that no one have taken yet.
+3. Each trader gets the option to sell any amount of stocks they have, as per the market value.
+4. Price updating: goes up for each buy and down for each sell. Also moves around randomly.
 
 ## Your Bot
 Each bot participating in the game should be a class inheriting from the TraderBot class, and so will have to include two functions:
