@@ -8,10 +8,10 @@ Change the name and implement the buy_offer and sell_stocks methods fully.
 class EmptyTrader(traderBot.TraderBot):
     _name = "netzer_empty"
     
-    def buy_offer(self, money: int, value: int, price: int, time) -> bool:
+    def buy_offer(self, money: int, value: int, price: int, metadata) -> bool:
         # Empty trader does not buy
         return False    
     
-    def sell_stocks(self, money: int, stocks: int, value: int, time) -> int:
+    def sell_stocks(self, money: int, stocks: int, value: int, metadata) -> int:
         # Empty trader does not have stocks to sell
         return 0

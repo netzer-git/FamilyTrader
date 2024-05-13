@@ -18,14 +18,14 @@ Each bot participating in the game should be a class inheriting from the TraderB
 
 You can see a few examples for trader bots in Traders folders.
 
-#### buy_offer(money: int, value: int, price: int, time: [int, int]) -> bool
+#### buy_offer(money: int, value: int, price: int, metadata: dict(string: any)) -> bool
 
 This function takes the need data and decide for the bot if it want to buy the stock for the suggested price. The boolean value will need to be True for the bot to buy the stock, and False to not.
 
 - money - amount of available money the bot have at this point.
 - value - current stock value.
 - price - price suggested for this offer.
-- time - a list of [current_day, last_day] where current_day is changing every day and last_day will be the last day of the game.
+- metadata - a dictionary of multiple available values the game gives as metadata. Where "current_day" key is changing daily and "last_day" key will be the last day of the game.
 
 Returning False will pass on the current offer, returning True will buy you the stocks, but only if you have enough money at this point.
 
@@ -36,6 +36,6 @@ This function gets the current data of the bot, and should decide how many (can 
 - money - amount of available money the bot have at this point.
 - stocks - amount of owned stocks the bot have at this point.
 - value - current stock value.
-- time - a list of [current_day, last_day] where current_day is changing every day and last_day will be the last day of the game.
+- metadata - a dictionary of multiple available values the game gives as metadata. Where "current_day" key is changing daily and "last_day" key will be the last day of the game.
 
 Returning 0 will indicate no change. for any other number N, the bot will sell N stocks from the bot owned stocks, gaining N*value money. In the last day, all bots need to sell all of their stock, since stocks do not worth anything at the end of the game.
