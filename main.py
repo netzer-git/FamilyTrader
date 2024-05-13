@@ -1,9 +1,11 @@
 from Traders import emptyTrader
 from Traders import randomTrader
 from Traders import solidTrader
+from Traders import traderBot
 from traderHandler import TraderHandler
 from stockHandler import run_stock_exchange
 
+import config
 import matplotlib.pyplot as plt
 
 INIT_MONEY = 1_000
@@ -13,21 +15,25 @@ LAST_DAY = 10
 
 traders = [
     emptyTrader.EmptyTrader(),
-    emptyTrader.EmptyTrader(),
     randomTrader.RandomTrader(),
-    randomTrader.RandomTrader(),
-    solidTrader.SolidTrader(),
     solidTrader.SolidTrader(),
 ]
 
-def main():
+def wrapper(traders):
+    config.config_properties.DEBUG = True
     trader_handler = TraderHandler(traders, INIT_MONEY)
     metadata = run_stock_exchange(trader_handler, INIT_STOCK, COMMISSION, LAST_DAY)
-    
-    print()
-    print("*** Stock exchange simulation ended ***")
-    print()
-    trader_handler.pretty_print()
+
+    if config.config_properties.DEBUG:
+        print()
+        print("*** Stock exchange simulation ended ***")
+        print()
+        trader_handler.pretty_print()
+
+    return metadata
+
+def main():
+    metadata = wrapper(traders=traders)
 
     # paint stocks plots
     fig, ax = plt.subplots()

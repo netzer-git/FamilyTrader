@@ -1,6 +1,8 @@
 from typing import List
 from Traders import traderBot
 import random as rnd
+import config
+
 class TraderHandler:
     def __init__(self, traders_input: List[traderBot.TraderBot], initial_money: int):
         self.traders = []
@@ -24,10 +26,14 @@ class TraderHandler:
                     traderInfo["money"] -= value + commission
                     traderInfo["stocks"] += 1
                     today_buys += 1
-                    print(f"{trader.get_name()} bought a stock at {offer_price}")
+
+                    if config.config_properties.DEBUG:
+                        print(f"{trader.get_name()} bought a stock at {offer_price}")
                 else:
                     refused_offers.append(offer_price)
-                    print(f"{trader.get_name()} refused a stock at {offer_price}")
+
+                    if config.config_properties.DEBUG:
+                        print(f"{trader.get_name()} refused a stock at {offer_price}")
         
         return today_buys
         
@@ -43,6 +49,9 @@ class TraderHandler:
                 traderInfo["money"] += stocks_amount_to_sell * value - stocks_amount_to_sell * commission
                 traderInfo["stocks"] -= stocks_amount_to_sell
                 total_sales += stocks_amount_to_sell
+
+                if config.config_properties.DEBUG:
+                    print(f"{trader.get_name()} sold {stocks_amount_to_sell} stocks")
             
         return total_sales
     

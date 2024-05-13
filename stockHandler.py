@@ -1,5 +1,6 @@
 from traderHandler import TraderHandler
 import random as rnd
+import config
 
 def run_stock_exchange(trader_handler: TraderHandler, init_stock: int, commission: int, last_day: int):
     current_day = 1
@@ -11,6 +12,7 @@ def run_stock_exchange(trader_handler: TraderHandler, init_stock: int, commissio
     # review data objects
     stocks_data = []
     
+    # running day loop
     while current_day <= last_day:
         # buy phase
         day_buys = trader_handler.activate_buy_phase(current_stock_value, offers_per_trader, deviation, commission, [current_day, last_day])
@@ -20,9 +22,10 @@ def run_stock_exchange(trader_handler: TraderHandler, init_stock: int, commissio
         stocks_in_market += day_buys - day_sells
         stocks_data.append(current_stock_value)
         current_stock_value = adjust_stock_value(current_stock_value, day_buys, day_sells, deviation, stocks_in_market)
-        # day advance
-        print(f"Day {current_day} ended. Stock value: {current_stock_value}. Stocks in market: {stocks_in_market}")
-        print()
+        # advance day
+        if config.config_properties.DEBUG:
+            print(f"Day {current_day} ended. Stock value: {current_stock_value}. Stocks in market: {stocks_in_market}")
+            print()
         current_day += 1
         
     return { "stocks_data": stocks_data }
@@ -35,4 +38,4 @@ def adjust_stock_value(value: int, day_buys: int, day_sells: int, deviation: flo
     impact = int((day_buys - day_sells) * (value * 0.1) * (1 / stocks_in_market))
     # add a random deviation
     chip = rnd.randint(-int(value * deviation), int(value * deviation))
-    return value + chip + impact
+    return max(value + chip + impact, 1)
