@@ -2,6 +2,7 @@ from typing import List
 from Traders import traderBot
 import random as rnd
 import config
+import time
 
 class TraderHandler:
     def __init__(self, traders_input: List[traderBot.TraderBot], initial_money: int):
@@ -13,7 +14,7 @@ class TraderHandler:
                 "stocks": 0
             })
 
-    def activate_buy_phase(self, value: int, offers_per_trader: int, deviation: float, commission: int, time) -> int:
+    def activate_buy_phase(self, value: int, offers_per_trader: int, deviation: float, commission: int, metadata) -> int:
         refused_offers = []
         today_buys = 0
         
@@ -22,28 +23,31 @@ class TraderHandler:
                 trader: traderBot.TraderBot = traderInfo["trader"]
                 offer_price = self.generate_stock_price(value, deviation)
                 
-                if trader.buy_offer(traderInfo["money"], value, offer_price, time):
+                if trader.buy_offer(traderInfo["money"], value, offer_price, metadata):
                     traderInfo["money"] -= value + commission
                     traderInfo["stocks"] += 1
                     today_buys += 1
 
                     if config.config_properties.DEBUG:
                         print(f"{trader.get_name()} bought a stock at {offer_price}")
+                        time.sleep(config.config_properties.medium_sleep)
+
                 else:
                     refused_offers.append(offer_price)
 
                     if config.config_properties.DEBUG:
                         print(f"{trader.get_name()} refused a stock at {offer_price}")
+                        time.sleep(config.config_properties.medium_sleep)
         
         return today_buys
         
 
-    def activate_sell_phase(self, value: int, commission: int, time ) -> int:
+    def activate_sell_phase(self, value: int, commission: int, metadata) -> int:
         total_sales = 0
         
         for traderInfo in self.traders:
             trader: traderBot.TraderBot = traderInfo["trader"]
-            stocks_amount_to_sell = trader.sell_stocks(traderInfo["money"], traderInfo["stocks"], value, time)
+            stocks_amount_to_sell = trader.sell_stocks(traderInfo["money"], traderInfo["stocks"], value, metadata)
             # apply sell effects
             if (0 < stocks_amount_to_sell <= traderInfo["stocks"]):
                 traderInfo["money"] += stocks_amount_to_sell * value - stocks_amount_to_sell * commission
@@ -52,6 +56,7 @@ class TraderHandler:
 
                 if config.config_properties.DEBUG:
                     print(f"{trader.get_name()} sold {stocks_amount_to_sell} stocks")
+                    time.sleep(config.config_properties.medium_sleep)
             
         return total_sales
     

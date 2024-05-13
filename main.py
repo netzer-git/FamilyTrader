@@ -5,6 +5,7 @@ from Traders import traderBot
 from traderHandler import TraderHandler
 from stockHandler import run_stock_exchange
 
+import time
 import config
 import matplotlib.pyplot as plt
 
@@ -19,8 +20,8 @@ traders = [
     solidTrader.SolidTrader(),
 ]
 
-def wrapper(traders):
-    config.config_properties.DEBUG = True
+def stock_exchange_wrapper(traders, debug=False):
+    config.config_properties.DEBUG = debug
     trader_handler = TraderHandler(traders, INIT_MONEY)
     metadata = run_stock_exchange(trader_handler, INIT_STOCK, COMMISSION, LAST_DAY)
 
@@ -28,12 +29,14 @@ def wrapper(traders):
         print()
         print("*** Stock exchange simulation ended ***")
         print()
-        trader_handler.pretty_print()
+        time.sleep(config.config_properties.big_sleep)
+    
+    trader_handler.pretty_print()
 
     return metadata
 
 def main():
-    metadata = wrapper(traders=traders)
+    metadata = stock_exchange_wrapper(traders=traders)
 
     # paint stocks plots
     fig, ax = plt.subplots()
