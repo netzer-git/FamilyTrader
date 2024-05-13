@@ -1,0 +1,16 @@
+__pycache__/config.cpython-37.pyc
+__pycache__/config.cpython-39.pyc
+__pycache__/stockHandler.cpython-37.pyc
+__pycache__/stockHandler.cpython-39.pyc
+__pycache__/traderHandler.cpython-37.pyc
+__pycache__/traderHandler.cpython-39.pyc
+Traders/__pycache__/__init__.cpython-37.pyc
+Traders/__pycache__/__init__.cpython-39.pyc
+Traders/__pycache__/emptyTrader.cpython-37.pyc
+Traders/__pycache__/emptyTrader.cpython-39.pyc
+Traders/__pycache__/randomTrader.cpython-37.pyc
+Traders/__pycache__/randomTrader.cpython-39.pyc
+Traders/__pycache__/solidTrader.cpython-37.pyc
+Traders/__pycache__/solidTrader.cpython-39.pyc
+Traders/__pycache__/traderBot.cpython-37.pyc
+Traders/__pycache__/traderBot.cpython-39.pyc
