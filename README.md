@@ -10,6 +10,10 @@ For X traders, in a game that plays for Y days. Where the stock value is P
 4. Price updating: goes up for each buy and down for each sell. Also moves around randomly.
 
 ## Your Bot
+Can I join?
+
+Sure thing. You need to create your own bot, in the Traders folder. Open a new python file with your name, like Traders/Netzer.py and add your bot inside. Finished you bot and you want to test it? Go to testYourBot file, and follow the instructions! 
+
 Each bot participating in the game should be a class inheriting from the TraderBot class, and so will have to include two functions.
 
 You can see a few examples for trader bots in Traders folders.
