@@ -1,7 +1,7 @@
 # FamilyTrader
 Welcome to the Stock Exchange Bot Family Game! Yay!
 
-In the game, we would each create a simple bot, with only 2 functions, that will play with the other bots at stock exchange trading. You can use this repository to try and run your bots, test and train it to the real competition we will all have in the future.
+In the game, we would each create a simple bot, with only 2 functions, that will play with the other bots at stock exchange trading. You can use this repository to try and run your bots, test, and train it to the real competition we will all have in the future.
 
 ## Your Bot
 Can I join?
@@ -19,11 +19,11 @@ This function takes the needed data and decides for the bot if it wants to buy t
 - money - the amount of available money the bot has at this point.
 - value - current stock value.
 - price - price suggested for this offer.
-- metadata - a dictionary of multiple available values the game gives as metadata. Where the "current_day" key is changing daily and the "last_day" key will be the last day of the game.
+- metadata - a dictionary of multiple available values the game gives as metadata. Where the "current_day" value changes daily and the "last_day" value will be the last day of the game.
 
 Returning False will pass on the current offer, returning True will buy you the stocks, but only if you have enough money at this point.
 
-#### sell_stocks(money: int, stocks: int, value: int, time: [int, int]) -> int
+#### sell_stocks(money: int, stocks: int, value: int, metadata: dict(string: any)) -> int
 
 This function gets the current data of the bot and should decide how many (can be 0) stocks to sell at the current stock value.
 
@@ -32,7 +32,7 @@ This function gets the current data of the bot and should decide how many (can b
 - value - current stock value.
 - metadata - a dictionary of multiple available values the game gives as metadata. Where the "current_day" key changes daily and the "last_day" key will be the last day of the game.
 
-Returning 0 will indicate no change. for any other number N, the bot will sell N stocks from the bot-owned stocks, gaining N*value money. On the last day, all bots need to sell all of their stock, since stocks do not worth anything at the end of the game.
+Returning 0 will indicate no change. for any other number N, the bot will sell N stocks from the bot-owned stocks, gaining N*value money. On the last day, all bots need to sell all of their stock, since stocks are not worth anything at the end of the game.
 ## Day In The Exchange
 For X traders, in a game that plays for Y days. Where the stock value is P
 1. Randomize 2*X offers. Each trader gets 2 offers, for each offer, activate the bot on the buy_offer function for each offer.
