@@ -25,13 +25,14 @@ traders = [
 ]
 
 def stock_exchange_wrapper(traders, debug=False):
+    config.config_properties.DEBUG = debug
+    
     if config.config_properties.DEBUG:
         print()
         print("*** Stock exchange simulation started ***")
         print()
         time.sleep(config.config_properties.big_sleep)
     
-    config.config_properties.DEBUG = debug
     trader_handler = TraderHandler(traders, INIT_MONEY)
     metadata = run_stock_exchange(trader_handler, INIT_STOCK, COMMISSION, LAST_DAY)
 
