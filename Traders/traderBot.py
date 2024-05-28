@@ -10,5 +10,5 @@ class TraderBot:
     
     def get_name(self) -> str:
         if self._name is None:
-            raise ValueError("TraderBot should not be used directly")
+            raise ValueError("TraderBot should not be used directly, _name should be set in the child class.")
         return self._name
