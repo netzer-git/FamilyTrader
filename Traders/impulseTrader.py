@@ -25,6 +25,6 @@ class ImpulseTrader(traderBot.TraderBot):
         for price in self._stocks_bought_price:
             if price > value:
                 amount_to_sell += self._stocks_bought_price[price]
-                del self._stocks_bought_price[price]
+                self._stocks_bought_price[price] = 0
         
         return amount_to_sell
