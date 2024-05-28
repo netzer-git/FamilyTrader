@@ -2,6 +2,8 @@ from Traders import emptyTrader
 from Traders import randomTrader
 from Traders import solidTrader
 from Traders import traderBot
+from Traders import impulseTrader
+from Traders import opporTrader
 from traderHandler import TraderHandler
 from stockHandler import run_stock_exchange
 
@@ -18,9 +20,17 @@ traders = [
     emptyTrader.EmptyTrader(),
     randomTrader.RandomTrader(),
     solidTrader.SolidTrader(),
+    impulseTrader.ImpulseTrader(),
+    opporTrader.opporTrader()
 ]
 
 def stock_exchange_wrapper(traders, debug=False):
+    if config.config_properties.DEBUG:
+        print()
+        print("*** Stock exchange simulation started ***")
+        print()
+        time.sleep(config.config_properties.big_sleep)
+    
     config.config_properties.DEBUG = debug
     trader_handler = TraderHandler(traders, INIT_MONEY)
     metadata = run_stock_exchange(trader_handler, INIT_STOCK, COMMISSION, LAST_DAY)
@@ -36,7 +46,7 @@ def stock_exchange_wrapper(traders, debug=False):
     return metadata
 
 def main():
-    metadata = stock_exchange_wrapper(traders=traders)
+    metadata = stock_exchange_wrapper(traders=traders, debug=True)
 
     # paint stocks plots
     fig, ax = plt.subplots()
